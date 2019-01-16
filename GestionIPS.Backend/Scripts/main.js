@@ -400,25 +400,77 @@ function obtenerDatos() {
     });
 }
 
-//function ListaPorPaciente() {
-function ListaEventoPorFecha() {
-    fechaini = $("#fechaini").val();
-    fechafin = $("#fechafin").val();    
+function ListarInasistenteFecha() {    
     $.ajax({
         type: "GET",
         contentType: "application/json; charset=utf-8",
-        url: '/Eventos_Programacion/ListaEventoPorFecha?fechaini='+fechaini+'&fechafin='+fechafin,
-        dataType:'json',
-        success: function (data) {
-            //console.log("Hola" + data[0].HistClinica);
-            tableData = data;            
-            var rowH = "<tr class='azul'><th>DOCUMENTO</th><th>NOMBRE</th><th>SERVICIO</th><th>IPS</th></tr>";
-            $("#tbl").append(rowH);
-            jQuery.each(tableData, function (i, tableData) {
-                var rowHTML = "<tr><td>" + tableData.HistClinica + "</td><td>" + tableData.Paciente + "</td><td>" + tableData.NomEvento + "</td><td>"
-                    + tableData.NomServicio + "</td>" + "<td>" + tableData.CODIPS + "</td>";
-                rowHTML += "</tr>";
-                $("#tbl").append(rowHTML);
+        url: "/Eventos_Programacion/ListarInasistenteFecha",
+        dataType: 'json',
+        success: function (consulta) {
+            new Chart(document.getElementById("myAreaChart"), {
+                type: 'bar',
+                data: {
+                    labels: ["Julio", "Agosto",
+                        "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                    datasets: [
+                        {
+                            label: "Population (millions)",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#FF7F50"],
+                            data: [5587, 6349, 6061, 6351, 6175, 5467]
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Gráfica deserción de pacientes'
+                    }
+                }
+            }); 
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+function ChartAgenda() {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        url: "/Eventos_Programacion/ChartAgenda",
+        dataType: 'json',
+        success: function (consulta) {
+            new Chart(document.getElementById("myAreaChart"), {
+                type: 'line',
+                data: {
+                    labels: ["Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                    datasets: [{
+                        data: [34179, 36496, 36018, 37350, 34999, 27607],
+                        label: "Citas Asignadas",
+                        borderColor: "#3e95cd",
+                        fill: false
+                    }, {
+                        data: [5587,6349,6061,6351,6175,5467],
+                        label: "No asistidas",
+                        borderColor: "#8e5ea2",
+                        fill: false
+                    }, {
+                        data: [28592, 30147, 29957, 30999, 28824, 22145],
+                        label: "Asistidas",
+                        borderColor: "#3cba9f",
+                        fill: false
+                    }
+                    
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'World population per region (in millions)'
+                    }
+                }
             });
         },
         error: function (result) {
@@ -426,6 +478,245 @@ function ListaEventoPorFecha() {
         }
     });
 }
+
+function ChartAgendaEPS() {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        url: "/Eventos_Programacion/ChartAgendEPS",
+        dataType: 'json',
+        success: function (consulta) {
+            new Chart(document.getElementById("ChartEps"), {
+                type: 'bar',
+                data: {
+                    labels: ["Ambuq", "Cajacopi", "NuevaEPS", "Saludvida", "Mutualser", "Coosalud", "Comfacor", "Sisben"],
+                    datasets: [
+                        {
+                            label: "Agendamiento EPS Mes Diciembre",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                            data: [4690, 5602, 4302, 1027, 6451,2996,1353,1153]
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Agendamiento mes de diciembre 2018 por Eps'
+                    }
+                }
+            });
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+
+function ListarInasistenteFecha1() {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        url: "/Eventos_Programacion/ListarInasistenteFecha",
+        dataType: 'json',
+        success: function (consulta) {
+            new Chart(document.getElementById("myAreaChart"), {
+                type: 'bar',
+                data: {
+                    labels: ["Julio", "Agosto",
+                        "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                    datasets: [
+                        {
+                            label: "Population (millions)",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#3e95cd", "#8e5ea2", "#3cba9f"],
+                            data: [2478, 5267, 734, 784, 433, 1300]
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Predicted world population (millions) in 2050'
+                    }
+                }
+            });
+
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+//function ListaPorPaciente() {
+function ListaEventoMedicoFecha() {
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();    
+    codigomedico = $("#codigomedico").val();    
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        url: '/Eventos_Programacion/ListaEventoMedicoFecha?fechaini=' + fechaini + '&fechafin=' + fechafin + '&codigomedico=' + codigomedico,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("loading").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (data) {
+            document.getElementById("loading").style.display = "none";            
+            $('#tbl').DataTable({
+                
+                data: data,
+                columns: [
+                    { data: 'HistClinica' },
+                    { data: 'Paciente' },
+                    { data: 'NomEvento' },
+                    { data: 'NomServicio' },
+                    { data: 'Fecha' },
+                    { data: 'CODIPS' },
+                    { data: 'Asist' },
+                    { data: 'Telefonos' },
+                    { data: 'SystemUser' },
+                ],
+                "pagingType": "full_numbers"
+            })                        
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+function ListaEventoAgenteFecha() {
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();
+    codigoagente = $("#codigoagente").val();
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        url: '/Eventos_Programacion/ListaEventoAgenteFecha?fechaini=' + fechaini + '&fechafin=' + fechafin + '&codigoagente=' + codigoagente,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("loading").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (data) {
+            document.getElementById("loading").style.display = "none";
+            $('#tbl').DataTable({
+
+                data: data,
+                columns: [
+                    { data: 'HistClinica' },
+                    { data: 'Paciente' },
+                    { data: 'NomEvento' },
+                    { data: 'NomServicio' },
+                    { data: 'Fecha' },
+                    { data: 'CODIPS' },
+                    { data: 'Asist' },
+                    { data: 'Telefonos' },
+                    { data: 'SystemUser' },
+                ],
+                "pagingType": "full_numbers"
+            })            
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+function ListarInasistenteUltimaFecha() {
+    fechaini = '2019-01-01';//$("#fechaini").val();
+    fechafin = '2019-01-14';//$("#fechafin").val();
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",        
+        url: '/Eventos_Programacion/ListarInasistenteUltimaFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("loading").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (data) {
+            document.getElementById("loading").style.display = "none";
+            $('#tbl').DataTable({
+
+                data: data,
+                columns: [
+                    { data: 'HistClinica' },
+                    { data: 'Paciente' },
+                    { data: 'NomEvento' },
+                    { data: 'NomServicio' },
+                    { data: 'Fecha' },
+                    { data: 'CODIPS' },
+                    { data: 'Asist' },
+                    { data: 'Telefonos' },
+                    { data: 'SystemUser' },
+                ],
+                "pagingType": "full_numbers"
+            })
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+function CuantosEventosFecha() {
+    fechaini = '2019-01-01';//$("#fechaini").val();
+    fechafin = '2019-01-15';//$("#fechafin").val();
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        //url: '/Eventos_Programacion/ListarInasistenteUltimaFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        url: '/Eventos_Programacion/CuantosEventosFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("loading").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (datos) {
+            document.getElementById("loading").style.display = "none";
+            new Chart(document.getElementById("myAreaChart"), {
+                type: 'bar',
+                data: {
+                    labels: ["Consultas Medicas", "Salud Oral",
+                        "Odontologia General", "CyD", "Planificación", "Adulto Joven", "Agudeza Visual", "Adulto Mayor"],
+                    datasets: [
+                        {
+                            label: "Population (millions)",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#AED6F1", "#CDEB8B", "#F9E79F", "#F39C12", "#CD6155"],
+                            data: [datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6], datos[7]]
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Predicted world population (millions) in 2050'
+                    }
+                }
+            });
+
+
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
 
 function BuscarPaciente() {
     $("#tbl tr").remove();

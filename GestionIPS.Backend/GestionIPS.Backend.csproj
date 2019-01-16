@@ -227,6 +227,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\cargando.png" />
+    <Content Include="images\gif-cargando.gif" />
     <Content Include="js\demo\Chart.bundle.js" />
     <Content Include="js\demo\Chart.bundle.min.js" />
     <Content Include="js\demo\Chart.js" />
@@ -1735,6 +1737,10 @@
     <Content Include="vendor\fontawesome-free\webfonts\fa-solid-900.woff" />
     <Content Include="vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Views\pagina_modelo.cshtml" />
+    <Content Include="Views\Eventos_Programacion\ReportexAgente.cshtml" />
+    <Content Include="Views\Eventos_Programacion\Principal.cshtml" />
+    <Content Include="Views\Eventos_Programacion\ChartAgend.cshtml" />
+    <Content Include="Views\Eventos_Programacion\ChartServicios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

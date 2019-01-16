@@ -1,24 +1,21 @@
-Ôªøusing System.Web;
+using System.Web;
 using System.Web.Optimization;
 
 namespace GestionIPS.Backend
 {
     public class BundleConfig
     {
-        // Para obtener m√°s informaci√≥n sobre las uniones, visite https://go.microsoft.com/fwlink/?LinkId=301862
+        // Para obtener m·s informaciÛn sobre las uniones, visite https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                      "~/Scripts/jquery-{version}.js"));
-
-            /*bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                      "~/vendor/jquery/jquery-{version}.js"));*/
+                        "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            // Utilice la versi√≥n de desarrollo de Modernizr para desarrollar y obtener informaci√≥n. De este modo, estar√°
-            // para la producci√≥n, use la herramienta de compilaci√≥n disponible en https://modernizr.com para seleccionar solo las pruebas que necesite.
+            // Utilice la versiÛn de desarrollo de Modernizr para desarrollar y obtener informaciÛn. De este modo, estar·
+            // para la producciÛn, use la herramienta de compilaciÛn disponible en https://modernizr.com para seleccionar solo las pruebas que necesite.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 

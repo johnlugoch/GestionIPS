@@ -12,8 +12,8 @@ namespace GestionIPS.Backend.Models
         public string Paciente { get; set; }
         public string NomEvento { get; set; }
         public string NomServicio { get; set; }
-        /*public DateTime Fecha { get; set; }
-        public DateTime HoraIni { get; set; }
+        public string Fecha { get; set; }
+        /*public DateTime HoraIni { get; set; }
         public DateTime HoraFin { get; set; }
         public int CodMedico { get; set; }            
         public int EventoAdmision { get; set; }
@@ -24,16 +24,17 @@ namespace GestionIPS.Backend.Models
         public int IdInfra { get; set; }
         public string CodSeccion { get; set; }
         public int Edad { get; set; }
-        public int Cancelada { get; set; }
+        public int Cancelada { get; set; }*/
         public string Telefonos { get; set; }
-        public string TipoAfiliacion { get; set; }
+        /*public string TipoAfiliacion { get; set; }
         public string NoAfiliacion { get; set; }
         public string CodServicio { get; set; }
-        public string Especialidad { get; set; }
+        public string Especialidad { get; set; }*/
         public string Asist { get; set; }
-        public string NombreMedico { get; set; }*/
+        /*public string NombreMedico { get; set; }*/
         public string CODIPS { get; set; }
         //public DateTime FechaAdmision { get; set; }
         //public DateTime HoraAdmision { get; set; }*/
+        public string SystemUser { get; set; }
     }
 }

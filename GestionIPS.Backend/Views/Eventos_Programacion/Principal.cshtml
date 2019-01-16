@@ -1,7 +1,7 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +17,10 @@
     <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- Page level plugin CSS-->
     <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    
+
     <!-- Custom styles for this template-->
-    <link href="~/css/sb-admin.css" rel="stylesheet">    
-    
+    <link href="~/css/sb-admin.css" rel="stylesheet">
+
     <!-- DatetimePicker-->
     <link href="~/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
@@ -96,9 +96,9 @@
                     <span>Pages</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <h6 class="dropdown-header">Inicio:</h6>
-                    <a class="dropdown-item" href="/Eventos_Programacion/Principal">Principal</a>
                     <h6 class="dropdown-header">Médico:</h6>
+                    <!--<a class="dropdown-item" href="login.html">Agenda Médico</a>-->
+
                     <a class="dropdown-item" href="/Eventos_Programacion/Index">Agenda Médica</a>
                     <a class="dropdown-item" href="register.html">Register</a>
                     <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
@@ -117,10 +117,10 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Gráficas</span>
+                    <span>Análisis</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <h6 class="dropdown-header">Charts</h6>
+                    <h6 class="dropdown-header">Charts:</h6>
                     <!--<a class="dropdown-item" href="login.html">Agenda Médico</a>-->
                     <a class="dropdown-item" href="/Eventos_Programacion/ChartAgend">Gráfica Agenda</a>
                     <a class="dropdown-item" href="/Eventos_Programacion/ChartServicios">Gráfica Servicios</a>
@@ -142,6 +142,15 @@
                     </li>
                     <li class="breadcrumb-item active">Overview</li>
                 </ol>
+
+                <!--<div class="form-group">
+        <label class="sr-only" for="ejemplo_email_2">Fecha Inicial</label>
+        <input placeholder="Fecha Inicial" class="form-control" type="text" onfocus="(this.type='date')" id="fechaini">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="ejemplo_password_2">Fecha Final</label>
+        <input placeholder="Fecha Final" class="form-control" type="text" onfocus="(this.type='date')" id="fechafin">
+    </div>-->
                 <!-- Icon Cards
     <div class="row">
         <div class="col-xl-3 col-sm-6 mb-3">
@@ -208,93 +217,69 @@
                 </a>
             </div>
         </div>
-    </div>-->
-                
-                <!-- DataTables Example -->
+    </div>
+    <!--fin icon cards-->
+                <!-- Area Chart Example-->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fas fa-table"></i>
-                        Data Table Example
+                        <i class="fas fa-chart-area"></i>
+                        Diagrama Deserción de Pacientes
                     </div>
                     <div class="card-body">
-                        <form class="form-inline" role="form">
-                            <div class="form-group">
-                                <label class="sr-only" for="ejemplo_email_2">Fecha Inicial</label>
-                                <input placeholder="Fecha Inicial" class="form-control" type="text" onfocus="(this.type='date')" id="fechaini">
-                            </div>
-                            <div>&nbsp;</div>
-                            <div class="form-group">
-                                <label class="sr-only" for="ejemplo_password_2">Fecha Final</label>
-                                <input placeholder="Fecha Final" class="form-control" type="text" onfocus="(this.type='date')" id="fechafin">
-                            </div>
-                            <div>&nbsp;</div>
-                            <div class="form-group">
-                                <label class="sr-only" for="ejemplo_email_2">Código Médico</label>
-                                <input type="text" id="codigomedico" class="form-control"
-                                       placeholder="Introduce código médico">
-                            </div>
-
-                            <div>&nbsp;</div>
-                            <div class="form-group">
-
-                                <button id="buscar" type="button" class="btn btn-info js-validform" aria-label="Left Align">
-                                    <span style="font-size: 18px" class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
-                                </button>
-
-                            </div>
-
-
-                        </form>
-                        <div>&nbsp;</div>
-                        <div id="loading" style="display:none; text-align: center;">
-                            <br />
-                        </div>
-
-                        <!-- DataTables Example -->
-                        <div class="card mb-3">
-                            <div class="card-header"><i class="fas fa-table"></i> Data Table Example </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <!--Aquí comienza diseño de filtros en la grid-->
-                                    <!--<table id="tbl" class="display" style="width:100%">-->
-                                    <table class="table table-bordered" id="tbl" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Historia Clínica</th>
-                                                <th>Paciente</th>
-                                                <th>Evento</th>
-                                                <th>Servicio</th>
-                                                <th>Fecha</th>
-                                                <th>Codigo IPS</th>
-                                                <th>Asistió</th>
-                                                <th>Teléfonos</th>
-                                                <th>Agente</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Historia Clínica</th>
-                                                <th>Paciente</th>
-                                                <th>Evento</th>
-                                                <th>Servicio</th>
-                                                <th>Fecha</th>
-                                                <th>Codigo IPS</th>
-                                                <th>Asistió</th>
-                                                <th>Teléfonos</th>
-                                                <th>Agente</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-
-                                </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                                <!--<div id="loading">
-                        <img src="~/images/cargando.png" />"
-                    </div>-->
-                            </div>
-                        </div>
+                        <canvas id="myAreaChart" width="100%" height="30"></canvas>
                     </div>
+                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                </div>
+
+                <div id="loading" style="display:none; text-align: center;">
+                    <br />
+                </div>
+                <!-- DataTables Example -->
+                <!-- DataTables Example -->
+                <div class="card mb-3">
+                    <div class="card-header"><i class="fas fa-table"></i> Data Table Example </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <!--Aquí comienza diseño de filtros en la grid-->
+                            <!--<table id="tbl" class="display" style="width:100%">-->
+                            <table class="table table-bordered" id="tbl" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Historia Clínica</th>
+                                        <th>Paciente</th>
+                                        <th>Evento</th>
+                                        <th>Servicio</th>
+                                        <th>Fecha</th>
+                                        <th>Codigo IPS</th>
+                                        <th>Asistió</th>
+                                        <th>Teléfonos</th>
+                                        <th>Agente</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Historia Clínica</th>
+                                        <th>Paciente</th>
+                                        <th>Evento</th>
+                                        <th>Servicio</th>
+                                        <th>Fecha</th>
+                                        <th>Codigo IPS</th>
+                                        <th>Asistió</th>
+                                        <th>Teléfonos</th>
+                                        <th>Agente</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                        <!--<div id="loading">
+                <img src="~/images/cargando.png" />"
+            </div>-->
+                    </div>
+                </div>
+            </div>
                 </div>
                 <!-- /.container-fluid -->
                 <!-- Sticky Footer -->
@@ -349,9 +334,9 @@
         <!-- Page level plugin JavaScript-->
         <script src="~/vendor/chart.js/Chart.min.js"></script>
 
-        
+
         <!--<script src="~/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>-->
+        <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>-->
 
         <script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -361,45 +346,28 @@
         <!-- Demo scripts for this page-->
         <!--<script src="~/js/bootstrap-datetimepicker.min.js"></script>-->
         <!--<script src="~/js/demo/datatables-demo.js"></script>
-    <script src="~/js/demo/chart-area-demo.js"></script>-->
+        <script src="~/js/demo/chart-area-demo.js"></script>-->
 
         <script src="~/Scripts/main.js"></script>
 
 
         <script type="text/javascript">
-            $(document).ready(function () {                
-                $("#buscar").click(function () {   
+            $(document).ready(function () {
+                ListarInasistenteFecha();
+                ListarInasistenteUltimaFecha();
+               //CuantosEventosFecha();
+                $("#buscar").click(function () {
                     //$('#content').html('<div class="loading"><img src="~/images/cargando.png" /><br/>Un momento, por favor...</div>');
                     //ListaEventoMedicoFecha();
-                    ListaEventoMedicoFecha();
-                    ListarInasistenteFecha();
+                    
                 });
 
             });
-
-
-            /*new Chart(document.getElementById("myAreaChart"), {
-                type: 'bar',
-                data: {
-                    labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                    datasets: [
-                        {
-                            label: "Population (millions)",
-                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                            data: [2478, 5267, 734, 784, 433]
-                        }
-                    ]
-                },
-                options: {
-                    legend: { display: false },
-                    title: {
-                        display: true,
-                        text: 'Predicted world population (millions) in 2050'
-                    }
-                }
-            });*/
+            
 
         </script>
 
 </body>
 </html>
+
+
