@@ -414,7 +414,7 @@ function ListarInasistenteFecha() {
                         "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                     datasets: [
                         {
-                            label: "Population (millions)",
+                            label: "Pacientes Inasistentes",
                             backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#FF7F50"],
                             data: [5587, 6349, 6061, 6351, 6175, 5467]
                         }
@@ -468,7 +468,7 @@ function ChartAgenda() {
                 options: {
                     title: {
                         display: true,
-                        text: 'World population per region (in millions)'
+                        text: 'Análisis general de agendamiento (últimos 6 meses) '
                     }
                 }
             });
@@ -492,8 +492,8 @@ function ChartAgendaEPS() {
                     labels: ["Ambuq", "Cajacopi", "NuevaEPS", "Saludvida", "Mutualser", "Coosalud", "Comfacor", "Sisben"],
                     datasets: [
                         {
-                            label: "Agendamiento EPS Mes Diciembre",
-                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                            label: "Citas",
+                            backgroundColor: ["#8e5ea2", "#3e95cd", "#3cba9f", "#FF5733", "#F7DC6F", "#F5B041", "#F5B7B1","#D98880"],
                             data: [4690, 5602, 4302, 1027, 6451,2996,1353,1153]
                         }
                     ]
@@ -528,7 +528,7 @@ function ListarInasistenteFecha1() {
                         "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                     datasets: [
                         {
-                            label: "Population (millions)",
+                            label: "Pacientes que no asistieron",
                             backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#3e95cd", "#8e5ea2", "#3cba9f"],
                             data: [2478, 5267, 734, 784, 433, 1300]
                         }
@@ -538,7 +538,7 @@ function ListarInasistenteFecha1() {
                     legend: { display: false },
                     title: {
                         display: true,
-                        text: 'Predicted world population (millions) in 2050'
+                        text: 'Ultimos 6 meses'
                     }
                 }
             });
@@ -568,22 +568,77 @@ function ListaEventoMedicoFecha() {
 
         success: function (data) {
             document.getElementById("loading").style.display = "none";            
-            $('#tbl').DataTable({
+            $('#tbl').DataTable({                
+
+                destroy: true,
+                searching: true,
+                "pagingType": "full_numbers",
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+
+                fields: [{
+                    label: 'Hora:',
+                    type: 'datetime',
+                    def: function () { return new Date(); },
+                    format: 'h:mm AHH:mm:ss',
+                    fieldInfo: '24 hour clock format'
+                }, {
+                    label: 'Historia Clínica:',                    
+                }, {
+                    label: 'Paciente:',                    
+                }, {
+                    label: 'Evento:',                                        
+                }, {
+                    label: 'Servicio:',                    
+                }, {
+                    label: 'Fecha:',
+                }, {
+                    label: 'IPS:',
+                }, {
+                    label: 'Asistió:',
+                }, {
+                    label: 'Teléfonos:',
+                }, {
+                    label: 'Agente:',
+                }, 
+
+
+                ],
                 
                 data: data,
                 columns: [
+                    { data: 'HoraIni' },
                     { data: 'HistClinica' },
                     { data: 'Paciente' },
                     { data: 'NomEvento' },
                     { data: 'NomServicio' },
                     { data: 'Fecha' },
-                    { data: 'CODIPS' },
+                    { data: 'Nombre' },
                     { data: 'Asist' },
                     { data: 'Telefonos' },
                     { data: 'SystemUser' },
                 ],
-                "pagingType": "full_numbers"
+                
             })                        
+            
         },
         error: function (result) {
             alert("ha ocurrido un error");
@@ -609,20 +664,82 @@ function ListaEventoAgenteFecha() {
         success: function (data) {
             document.getElementById("loading").style.display = "none";
             $('#tbl').DataTable({
+                destroy: true,
+                searching: true,
+                "pagingType": "full_numbers",
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+                fields: [{
+                    label: 'Fecha Agente:',
+                    type: 'datetime',
+                    def: function () { return new Date(); },
+                    format: 'h:mm AHH:mm:ss',
+                    fieldInfo: '24 hour clock format'
+                }, {
+                        label: 'Agente:',
+                }, {
+                    label: 'Historia Clínica:',
+                }, {
+                    label: 'Paciente:',
+                }, {
+                    label: 'Evento:',
+                }, {
+                    label: 'Servicio:',
+                }, {
+                    label: 'Fecha:',
+                }, {
+                    label: 'IPS:',
+                }, {
+                    label: 'Profesional:',
+                }, {
+                    label: 'Asistió:',
+                }, {
+                    label: 'Teléfonos:',
+                }, {
+                    label: 'Fecha de cita:',
+                    type: 'datetime',
+                    def: function () { return new Date(); },
+                    format: 'h:mm AHH:mm:ss',
+                    fieldInfo: '24 hour clock format'
+                },
 
+
+                ],
+
+                "pagingType": "full_numbers",
+                
                 data: data,
                 columns: [
+                    { data: 'FechaSys' },
+                    { data: 'SystemUser' },
                     { data: 'HistClinica' },
                     { data: 'Paciente' },
                     { data: 'NomEvento' },
-                    { data: 'NomServicio' },
-                    { data: 'Fecha' },
-                    { data: 'CODIPS' },
+                    { data: 'NomServicio' },                    
+                    { data: 'Nombre' },
+                    { data: 'NombreMedico' },
                     { data: 'Asist' },
-                    { data: 'Telefonos' },
-                    { data: 'SystemUser' },
-                ],
-                "pagingType": "full_numbers"
+                    { data: 'Telefonos' },                   
+                    { data: 'HoraIni' },
+                ],                
             })            
         },
         error: function (result) {
@@ -631,9 +748,70 @@ function ListaEventoAgenteFecha() {
     });
 }
 
+function ListaInasistenteTabla() {
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();    
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        url: '/Eventos_Programacion/ListarInasistenteTabla?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("loading").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (data) {
+            document.getElementById("loading").style.display = "none";
+            $('#tbl').DataTable({
+                "pagingType": "full_numbers",
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+                data: data,
+                columns: [
+                    { data: 'HistClinica' },
+                    { data: 'Paciente' },
+                    { data: 'NomEvento' },
+                    { data: 'NomServicio' },
+                    { data: 'Fecha' },
+                    { data: 'Nombre' },
+                    { data: 'Asist' },
+                    { data: 'Telefonos' },
+                    { data: 'SystemUser' },
+                ],
+                "pagingType": "full_numbers"
+            })
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+
 function ListarInasistenteUltimaFecha() {
+    //Exception json max limit date
     fechaini = '2019-01-01';//$("#fechaini").val();
-    fechafin = '2019-01-14';//$("#fechafin").val();
+    fechafin = '2019-01-15';//$("#fechafin").val(); 
     //$('#loading').show();
     $.ajax({
         type: "GET",
@@ -648,7 +826,27 @@ function ListarInasistenteUltimaFecha() {
         success: function (data) {
             document.getElementById("loading").style.display = "none";
             $('#tbl').DataTable({
-
+                "pagingType": "full_numbers",
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
                 data: data,
                 columns: [
                     { data: 'HistClinica' },
@@ -656,7 +854,7 @@ function ListarInasistenteUltimaFecha() {
                     { data: 'NomEvento' },
                     { data: 'NomServicio' },
                     { data: 'Fecha' },
-                    { data: 'CODIPS' },
+                    { data: 'Nombre' },
                     { data: 'Asist' },
                     { data: 'Telefonos' },
                     { data: 'SystemUser' },
@@ -671,8 +869,8 @@ function ListarInasistenteUltimaFecha() {
 }
 
 function CuantosEventosFecha() {
-    fechaini = '2019-01-01';//$("#fechaini").val();
-    fechafin = '2019-01-15';//$("#fechafin").val();
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();
     //$('#loading').show();
     $.ajax({
         type: "GET",
@@ -691,12 +889,12 @@ function CuantosEventosFecha() {
                 type: 'bar',
                 data: {
                     labels: ["Consultas Medicas", "Salud Oral",
-                        "Odontologia General", "CyD", "Planificación", "Adulto Joven", "Agudeza Visual", "Adulto Mayor"],
+                        "Odontologia General", "CyD", "Planificación", "Adulto Joven", "Agudeza Visual", "Adulto Mayor", "Control Prenatal"],
                     datasets: [
                         {
-                            label: "Population (millions)",
-                            backgroundColor: ["#3e95cd", "#8e5ea2", "#AED6F1", "#CDEB8B", "#F9E79F", "#F39C12", "#CD6155"],
-                            data: [datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6], datos[7]]
+                            label: "Citas",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#AED6F1", "#CDEB8B", "#F9E79F", "#F39C12", "#CD6155", "#f4979c", "#9dce0a"],
+                            data: [datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6], datos[7], datos[8]]
                         }
                     ]
                 },
@@ -704,7 +902,7 @@ function CuantosEventosFecha() {
                     legend: { display: false },
                     title: {
                         display: true,
-                        text: 'Predicted world population (millions) in 2050'
+                        text: 'Agendamiento por servicios'
                     }
                 }
             });
@@ -716,6 +914,421 @@ function CuantosEventosFecha() {
         }
     });
 }
+
+function CuantasAdmisionesFecha() {
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        //url: '/Eventos_Programacion/ListarInasistenteUltimaFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        url: '/Eventos_Programacion/CuantasAdmisionesFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("loading").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (datos) {
+            document.getElementById("loading").style.display = "none";
+            new Chart(document.getElementById("myAreaChart"), {
+                type: 'bar',
+                data: {
+                    labels: ["Consultas Medicas", "Salud Oral",
+                        "Odontologia General", "CyD", "Planificación", "Adulto Joven", "Agudeza Visual", "Adulto Mayor", "Control Prenatal"],
+                    datasets: [
+                        {
+                            label: "Pacientes Admisionados",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#AED6F1", "#CDEB8B", "#F9E79F", "#F39C12", "#CD6155", "#f4979c", "#9dce0a"],
+                            data: [datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6], datos[7], datos[8]]
+                        },
+                        {
+                            label: 'Agendamiento Médico',
+                            data: [datos[9], datos[10], datos[11], datos[12], datos[13], datos[14], datos[15], datos[16], datos[17]],
+
+                            // Changes this dataset to become a line
+                            type: 'line'
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Pacientes Admitidos por servicios'
+                    }
+                }
+            });
+
+
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+
+
+function CuantosEventosFechaCE() {
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        //url: '/Eventos_Programacion/ListarInasistenteUltimaFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        url: '/Eventos_Programacion/CuantosEventosFechaCE?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading2").style.display = "block";
+            document.getElementById("loading2").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (datos) {
+            document.getElementById("loading2").style.display = "none";
+            new Chart(document.getElementById("ChartCE"), {
+                type: 'doughnut',
+                data: {
+                    labels: ["Consultas Medicas", "Consulta De Control",
+                        "Consulta Lectura Examenes"],
+                    datasets: [
+                        {
+                            label: "Citas",
+                            backgroundColor: ["#555E7B", "#8db9ca", "#00aeff"],
+                            data: [datos[0], datos[1], datos[2]]
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Agendamiento Consulta Médica'
+                    }
+                }
+            });
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+function CuantasAdmisionesFechaCE() {
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        //url: '/Eventos_Programacion/ListarInasistenteUltimaFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        url: '/Eventos_Programacion/CuantasAdmisionesFechaCE?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading2").style.display = "block";
+            document.getElementById("loading2").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (datos) {
+            document.getElementById("loading2").style.display = "none";
+            new Chart(document.getElementById("ChartCE"), {
+                type: 'doughnut',
+                data: {
+                    labels: ["Consultas Medicas", "Consulta De Control",
+                        "Consulta Lectura Examenes"],
+                    datasets: [
+                        {
+                            label: "Admisiones",
+                            backgroundColor: ["#555E7B", "#8db9ca", "#00aeff"],
+                            data: [datos[0], datos[1], datos[2]]
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Pacientes Admitidos Consulta Médica'
+                    }
+                }
+            });
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+function CuantosEventosFechaSO() {
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        //url: '/Eventos_Programacion/ListarInasistenteUltimaFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        url: '/Eventos_Programacion/CuantosEventosFechaSO?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading3").style.display = "block";
+            document.getElementById("loading3").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (datos) {
+            document.getElementById("loading3").style.display = "none";
+            new Chart(document.getElementById("ChartSO"), {
+                type: 'doughnut',
+                data: {
+                    labels: ["Odontologia Salud Oral (1°vez)", "Odontologia Salud Oral (Control)"],                        
+                    datasets: [
+                        {
+                            label: "Citas",
+                            backgroundColor: ["#FDE47F", "#7CCCE5"],
+                            data: [datos[0], datos[1]]
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Agendamiento Salud Oral'
+                    }
+                }
+            });
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+function CuantasAdmisionesFechaSO() {
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        //url: '/Eventos_Programacion/ListarInasistenteUltimaFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        url: '/Eventos_Programacion/CuantasAdmisionesFechaSO?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading3").style.display = "block";
+            document.getElementById("loading3").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (datos) {
+            document.getElementById("loading3").style.display = "none";
+            new Chart(document.getElementById("ChartSO"), {
+                type: 'doughnut',
+                data: {
+                    labels: ["Odontologia Salud Oral (1°vez)", "Odontologia Salud Oral (Control)"],
+                    datasets: [
+                        {
+                            label: "Citas",
+                            backgroundColor: ["#FDE47F", "#7CCCE5"],
+                            data: [datos[0], datos[1]]
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Pacientes Admitidos Salud Oral'
+                    }
+                }
+            });
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+
+function CuantosEventosFechaCYD() {
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        //url: '/Eventos_Programacion/ListarInasistenteUltimaFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        url: '/Eventos_Programacion/CuantosEventosFechaCYD?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading4").style.display = "block";
+            document.getElementById("loading4").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (datos) {
+            document.getElementById("loading4").style.display = "none";
+            new Chart(document.getElementById("ChartCYD"), {
+                type: 'doughnut',
+                data: {
+                    labels: ["Crecimiento y Desarrollo (1°vez)", "Crecimiento y Desarrollo (Control)"],
+                    datasets: [
+                        {
+                            label: "Citas",
+                            backgroundColor: ["#d2ea32", "#ff7243"],
+                            data: [datos[0], datos[1]]
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Agendamiento Consulta Crecimiento y desarrollo'
+                    }
+                }
+            });
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+function CuantasAdmisionesFechaCYD() {
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        //url: '/Eventos_Programacion/ListarInasistenteUltimaFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        url: '/Eventos_Programacion/CuantasAdmisionesFechaCYD?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading4").style.display = "block";
+            document.getElementById("loading4").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (datos) {
+            document.getElementById("loading4").style.display = "none";
+            new Chart(document.getElementById("ChartCYD"), {
+                type: 'doughnut',
+                data: {
+                    labels: ["Crecimiento y Desarrollo (1°vez)", "Crecimiento y Desarrollo (Control)"],
+                    datasets: [
+                        {
+                            label: "Citas",
+                            backgroundColor: ["#d2ea32", "#ff7243"],
+                            data: [datos[0], datos[1]]
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Pacientes Admitidos Consulta Crecimiento y desarrollo'
+                    }
+                }
+            });
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+function CuantosEventosFechaCP() {
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        //url: '/Eventos_Programacion/ListarInasistenteUltimaFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        url: '/Eventos_Programacion/CuantosEventosFechaCP?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading5").style.display = "block";
+            document.getElementById("loading5").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (datos) {
+            document.getElementById("loading5").style.display = "none";
+            new Chart(document.getElementById("ChartCP"), {
+                type: 'doughnut',
+                data: {
+                    labels: ["Control Prenatal (1°vez) Médico", "Control Prenatal(Control)"],
+                    datasets: [
+                        {
+                            label: "Citas",
+                            backgroundColor: ["#697d99", "#f4979c"],
+                            data: [datos[0], datos[1]]
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Agendamiento Consulta Control Prenatal'
+                    }
+                }
+            });
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+function CuantasAdmisionesFechaCP() {
+    fechaini = $("#fechaini").val();
+    fechafin = $("#fechafin").val();
+    //$('#loading').show();
+    $.ajax({
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        //url: '/Eventos_Programacion/ListarInasistenteUltimaFecha?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        url: '/Eventos_Programacion/CuantasAdmisionesFechaCP?fechaini=' + fechaini + '&fechafin=' + fechafin,
+        dataType: 'json',
+        beforeSend: function () {
+            document.getElementById("loading5").style.display = "block";
+            document.getElementById("loading5").innerHTML = "<img src='../images/cargando.gif' width='32' height='32'/>";
+        },
+
+        success: function (datos) {
+            document.getElementById("loading5").style.display = "none";
+            new Chart(document.getElementById("ChartCP"), {
+                type: 'doughnut',
+                data: {
+                    labels: ["Control Prenatal (1°vez) Médico", "Control Prenatal(Control)"],
+                    datasets: [
+                        {
+                            label: "Citas",
+                            backgroundColor: ["#697d99", "#f4979c"],
+                            data: [datos[0], datos[1]]
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Pacientes Admitidos Consulta Control Prenatal'
+                    }
+                }
+            });
+        },
+        error: function (result) {
+            alert("ha ocurrido un error");
+        }
+    });
+}
+
+
+
+
 
 
 function BuscarPaciente() {

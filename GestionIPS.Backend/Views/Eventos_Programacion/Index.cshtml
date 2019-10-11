@@ -17,17 +17,23 @@
     <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- Page level plugin CSS-->
     <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    
+
+    <!-- CDN PASARLO PARA ACA SOLUCIONA EL PROBLEMA DE PAGINACION-->
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+
+
+
+
     <!-- Custom styles for this template-->
-    <link href="~/css/sb-admin.css" rel="stylesheet">    
-    
+    <link href="~/css/sb-admin.css" rel="stylesheet">
+
     <!-- DatetimePicker-->
     <link href="~/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
 </head>
 <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-        <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand mr-1" href="index.html">BI-HMI</a>
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
         </button>
@@ -85,39 +91,33 @@
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                <a class="nav-link" href="/Eventos_Programacion/Principal" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-fw fa-chart-line"></i>
+                    <span>Inicio</span>
                 </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tablas</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <h6 class="dropdown-header">Inicio:</h6>
-                    <a class="dropdown-item" href="/Eventos_Programacion/Principal">Principal</a>
+
                     <h6 class="dropdown-header">Médico:</h6>
                     <a class="dropdown-item" href="/Eventos_Programacion/Index">Agenda Médica</a>
-                    <a class="dropdown-item" href="register.html">Register</a>
-                    <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
+                    <!--<a class="dropdown-item" href="register.html">Register</a>
+                <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>-->
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Call Center:</h6>
                     <a class="dropdown-item" href="/Eventos_Programacion/ReportexAgente">Reporte de Agente</a>
-                    <a class="dropdown-item" href="/Eventos_Programacion/ReportexAgente">Reporte Inasistente</a>
+                    <a class="dropdown-item" href="/Eventos_Programacion/ReportexInasistente">Reporte Inasistente</a>
 
-
-
-                    <a class="dropdown-item" href="register.html"></a>
-
-                    <a class="dropdown-item" href="blank.html">Blank Page</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Gráficas</span>
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Agenda</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                     <h6 class="dropdown-header">Charts</h6>
@@ -126,95 +126,108 @@
                     <a class="dropdown-item" href="/Eventos_Programacion/ChartServicios">Gráfica Servicios</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Admisión</span>
                 </a>
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                    <h6 class="dropdown-header">Charts</h6>
+                    <!--<a class="dropdown-item" href="login.html">Agenda Médico</a>-->
+                    <a class="dropdown-item" href="/Eventos_Programacion/ChartAdmision">Admisión General</a>
+                    <a class="dropdown-item" href="/Eventos_Programacion/ChartServicios">Admisión de Servicios</a>
+                </div>
             </li>
+
+            <!--<li class="nav-item">
+            <a class="nav-link" href="tables.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tables</span>
+            </a>
+        </li>-->
         </ul>
         <div id="content-wrapper">
             <div class="container-fluid">
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="#">Dashboard</a>
+                        <a href="#">BI-Materno</a>
                     </li>
-                    <li class="breadcrumb-item active">Overview</li>
+                    <li class="breadcrumb-item active">Agendamiento</li>
                 </ol>
                 <!-- Icon Cards
-    <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-primary o-hidden h-100">
-                <div class="card-body">
-                    <div class="card-body-icon">
-                        <i class="fas fa-fw fa-comments"></i>
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-primary o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fas fa-fw fa-comments"></i>
+                            </div>
+                            <div class="mr-5">26 New Messages!</div>
+                        </div>
+                        <a class="card-footer text-white clearfix small z-1" href="#">
+                            <span class="float-left">View Details</span>
+                            <span class="float-right">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </a>
                     </div>
-                    <div class="mr-5">26 New Messages!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                    <span class="float-left">View Details</span>
-                    <span class="float-right">
-                        <i class="fas fa-angle-right"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-warning o-hidden h-100">
-                <div class="card-body">
-                    <div class="card-body-icon">
-                        <i class="fas fa-fw fa-list"></i>
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-warning o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fas fa-fw fa-list"></i>
+                            </div>
+                            <div class="mr-5">11 New Tasks!</div>
+                        </div>
+                        <a class="card-footer text-white clearfix small z-1" href="#">
+                            <span class="float-left">View Details</span>
+                            <span class="float-right">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </a>
                     </div>
-                    <div class="mr-5">11 New Tasks!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                    <span class="float-left">View Details</span>
-                    <span class="float-right">
-                        <i class="fas fa-angle-right"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-success o-hidden h-100">
-                <div class="card-body">
-                    <div class="card-body-icon">
-                        <i class="fas fa-fw fa-shopping-cart"></i>
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-success o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fas fa-fw fa-shopping-cart"></i>
+                            </div>
+                            <div class="mr-5">123 New Orders!</div>
+                        </div>
+                        <a class="card-footer text-white clearfix small z-1" href="#">
+                            <span class="float-left">View Details</span>
+                            <span class="float-right">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </a>
                     </div>
-                    <div class="mr-5">123 New Orders!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                    <span class="float-left">View Details</span>
-                    <span class="float-right">
-                        <i class="fas fa-angle-right"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-danger o-hidden h-100">
-                <div class="card-body">
-                    <div class="card-body-icon">
-                        <i class="fas fa-fw fa-life-ring"></i>
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-danger o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fas fa-fw fa-life-ring"></i>
+                            </div>
+                            <div class="mr-5">13 New Tickets!</div>
+                        </div>
+                        <a class="card-footer text-white clearfix small z-1" href="#">
+                            <span class="float-left">View Details</span>
+                            <span class="float-right">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </a>
                     </div>
-                    <div class="mr-5">13 New Tickets!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                    <span class="float-left">View Details</span>
-                    <span class="float-right">
-                        <i class="fas fa-angle-right"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-    </div>-->
-                
+            </div>-->
                 <!-- DataTables Example -->
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-table"></i>
-                        Data Table Example
+                        Reporte de paciente por Médico
                     </div>
                     <div class="card-body">
                         <form class="form-inline" role="form">
@@ -252,7 +265,7 @@
 
                         <!-- DataTables Example -->
                         <div class="card mb-3">
-                            <div class="card-header"><i class="fas fa-table"></i> Data Table Example </div>
+                            <div class="card-header"><i class="fas fa-table"></i>Lista de Pacientes</div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <!--Aquí comienza diseño de filtros en la grid-->
@@ -260,12 +273,13 @@
                                     <table class="table table-bordered" id="tbl" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
+                                                <th>Hora</th>
                                                 <th>Historia Clínica</th>
                                                 <th>Paciente</th>
                                                 <th>Evento</th>
                                                 <th>Servicio</th>
                                                 <th>Fecha</th>
-                                                <th>Codigo IPS</th>
+                                                <th>IPS</th>
                                                 <th>Asistió</th>
                                                 <th>Teléfonos</th>
                                                 <th>Agente</th>
@@ -274,12 +288,13 @@
                                         <tbody></tbody>
                                         <tfoot>
                                             <tr>
+                                                <th>Hora</th>
                                                 <th>Historia Clínica</th>
                                                 <th>Paciente</th>
                                                 <th>Evento</th>
                                                 <th>Servicio</th>
                                                 <th>Fecha</th>
-                                                <th>Codigo IPS</th>
+                                                <th>IPS</th>
                                                 <th>Asistió</th>
                                                 <th>Teléfonos</th>
                                                 <th>Agente</th>
@@ -290,8 +305,8 @@
                                 </div>
                                 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                                 <!--<div id="loading">
-                        <img src="~/images/cargando.png" />"
-                    </div>-->
+                                <img src="~/images/cargando.png" />"
+                            </div>-->
                             </div>
                         </div>
                     </div>
@@ -333,14 +348,16 @@
                 </div>
             </div>
         </div>
-        <!-- Minified JS library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!-- Minified Bootstrap JS -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
         <!-- Bootstrap core JavaScript-->
         <script src="~/vendor/jquery/jquery.min.js"></script>
         <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Minified JS library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Minified Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
@@ -349,13 +366,13 @@
         <!-- Page level plugin JavaScript-->
         <script src="~/vendor/chart.js/Chart.min.js"></script>
 
-        
+        <script scr="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+
         <!--<script src="~/vendor/datatables/jquery.dataTables.js"></script>
     <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>-->
-
-        <script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-
+       
         <!-- Custom scripts for all pages-->
         <script src="~/js/sb-admin.min.js"></script>
         <!-- Demo scripts for this page-->
@@ -367,37 +384,37 @@
 
 
         <script type="text/javascript">
-            $(document).ready(function () {                
-                $("#buscar").click(function () {   
+            $(document).ready(function () {
+                $("#buscar").click(function () {
                     //$('#content').html('<div class="loading"><img src="~/images/cargando.png" /><br/>Un momento, por favor...</div>');
                     //ListaEventoMedicoFecha();
                     ListaEventoMedicoFecha();
-                    ListarInasistenteFecha();
+                    //ListarInasistenteFecha();
                 });
 
             });
 
 
-            /*new Chart(document.getElementById("myAreaChart"), {
-                type: 'bar',
-                data: {
-                    labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                    datasets: [
-                        {
-                            label: "Population (millions)",
-                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                            data: [2478, 5267, 734, 784, 433]
-                        }
-                    ]
-                },
-                options: {
-                    legend: { display: false },
-                    title: {
-                        display: true,
-                        text: 'Predicted world population (millions) in 2050'
-                    }
-                }
-            });*/
+                                            /*new Chart(document.getElementById("myAreaChart"), {
+                                                type: 'bar',
+                                                data: {
+                                                    labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+                                                    datasets: [
+                                                        {
+                                                            label: "Population (millions)",
+                                                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                                                            data: [2478, 5267, 734, 784, 433]
+                                                        }
+                                                    ]
+                                                },
+                                                options: {
+                                                    legend: { display: false },
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Predicted world population (millions) in 2050'
+                                                    }
+                                                }
+                                            });*/
 
         </script>
 

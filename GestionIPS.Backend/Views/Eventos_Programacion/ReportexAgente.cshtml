@@ -18,6 +18,9 @@
     <!-- Page level plugin CSS-->
     <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
+    <!-- CDN PASARLO PARA ACA SOLUCIONA EL PROBLEMA DE PAGINACION-->
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+
     <!-- Custom styles for this template-->
     <link href="~/css/sb-admin.css" rel="stylesheet">
 
@@ -27,7 +30,7 @@
 </head>
 <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-        <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand mr-1" href="index.html">BI-HMI</a>
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
         </button>
@@ -85,46 +88,59 @@
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                <a class="nav-link" href="/Eventos_Programacion/Principal" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-fw fa-chart-line"></i>
+                    <span>Inicio</span>
                 </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                    
                     <h6 class="dropdown-header">Médico:</h6>
                     <!--<a class="dropdown-item" href="login.html">Agenda Médico</a>-->
                     <a class="dropdown-item" href="/Eventos_Programacion/Index">Agenda Médica</a>
-                    <a class="dropdown-item" href="register.html">Register</a>
-                    <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Call Center:</h6>
                     <a class="dropdown-item" href="/Eventos_Programacion/ReportexAgente">Reporte de Agente</a>
-                    <a class="dropdown-item" href="/Eventos_Programacion/ReportexAgente">Reporte Inasistente</a>
+                    <a class="dropdown-item" href="/Eventos_Programacion/ReportexInasistente">Reporte Inasistente</a>
 
-
-
-                    <a class="dropdown-item" href="register.html">Register</a>
-
-                    <a class="dropdown-item" href="blank.html">Blank Page</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span>
+                    <span>Agenda</span>
                 </a>
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                    <h6 class="dropdown-header">Gráficas:</h6>
+                    <!--<a class="dropdown-item" href="login.html">Agenda Médico</a>-->
+                    <a class="dropdown-item" href="/Eventos_Programacion/ChartAgend">Gráfica Agenda</a>
+                    <a class="dropdown-item" href="/Eventos_Programacion/ChartServicios">Gráfica Servicios</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Admisión</span>
                 </a>
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                    <h6 class="dropdown-header">Gráficas</h6>
+                    <!--<a class="dropdown-item" href="login.html">Agenda Médico</a>-->
+                    <a class="dropdown-item" href="/Eventos_Programacion/ChartAdmision">Admisión General</a>
+                    <a class="dropdown-item" href="/Eventos_Programacion/ChartServicios">Admisión de Servicios</a>
+                </div>
             </li>
+            <!--<li class="nav-item">
+        <a class="nav-link" href="tables.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Tables</span>
+        </a>
+    </li>-->
         </ul>
         <div id="content-wrapper">
             <div class="container-fluid">
@@ -263,29 +279,33 @@
                                     <table class="table table-bordered" id="tbl" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
+                                                <th>Fecha Agente</th>
+                                                <th>Agente</th>
                                                 <th>Historia Clínica</th>
                                                 <th>Paciente</th>
                                                 <th>Evento</th>
                                                 <th>Servicio</th>
-                                                <th>Fecha</th>
                                                 <th>Codigo IPS</th>
+                                                <th>Profesional</th>
                                                 <th>Asistió</th>
                                                 <th>Teléfonos</th>
-                                                <th>Agente</th>
+                                                <th>Fecha Cita</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
                                         <tfoot>
                                             <tr>
+                                                <th>Fecha Agente</th>
+                                                <th>Agente</th>
                                                 <th>Historia Clínica</th>
                                                 <th>Paciente</th>
                                                 <th>Evento</th>
                                                 <th>Servicio</th>
-                                                <th>Fecha</th>
                                                 <th>Codigo IPS</th>
+                                                <th>Profesional</th>
                                                 <th>Asistió</th>
                                                 <th>Teléfonos</th>
-                                                <th>Agente</th>
+                                                <th>Fecha Cita</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -355,8 +375,7 @@
 
         <!--<script src="~/vendor/datatables/jquery.dataTables.js"></script>
         <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>-->
-
-        <script src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
+       
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
         <!-- Custom scripts for all pages-->

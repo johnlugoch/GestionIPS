@@ -13,8 +13,8 @@ namespace GestionIPS.Backend.Models
         public string NomEvento { get; set; }
         public string NomServicio { get; set; }
         public string Fecha { get; set; }
-        /*public DateTime HoraIni { get; set; }
-        public DateTime HoraFin { get; set; }
+        public string HoraIni { get; set; }
+        /*public DateTime HoraFin { get; set; }
         public int CodMedico { get; set; }            
         public int EventoAdmision { get; set; }
         public string Cirugias_Ad { get; set; }
@@ -31,10 +31,11 @@ namespace GestionIPS.Backend.Models
         public string CodServicio { get; set; }
         public string Especialidad { get; set; }*/
         public string Asist { get; set; }
-        /*public string NombreMedico { get; set; }*/
-        public string CODIPS { get; set; }
+        public string NombreMedico { get; set; }
+        public string Nombre { get; set; }
         //public DateTime FechaAdmision { get; set; }
         //public DateTime HoraAdmision { get; set; }*/
         public string SystemUser { get; set; }
+        public string FechaSys { get; set; }
     }
 }

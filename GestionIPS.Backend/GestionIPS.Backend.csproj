@@ -227,7 +227,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="images\cargando.png" />
+    <Content Include="images\cargando.gif" />
     <Content Include="images\gif-cargando.gif" />
     <Content Include="js\demo\Chart.bundle.js" />
     <Content Include="js\demo\Chart.bundle.min.js" />
@@ -240,6 +240,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1741,6 +1742,8 @@
     <Content Include="Views\Eventos_Programacion\Principal.cshtml" />
     <Content Include="Views\Eventos_Programacion\ChartAgend.cshtml" />
     <Content Include="Views\Eventos_Programacion\ChartServicios.cshtml" />
+    <Content Include="Views\Eventos_Programacion\ChartAdmision.cshtml" />
+    <Content Include="Views\Eventos_Programacion\ReportexInasistente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
